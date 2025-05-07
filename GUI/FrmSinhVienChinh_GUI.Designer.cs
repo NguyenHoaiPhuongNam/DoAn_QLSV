@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class FrmSinhVien_GUI
+    partial class FrmSinhVienChinh_GUI
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSinhVien_GUI));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSinhVienChinh_GUI));
             this.panel_Body = new System.Windows.Forms.Panel();
             this.panel_Top = new System.Windows.Forms.Panel();
             this.panel_Left = new System.Windows.Forms.Panel();

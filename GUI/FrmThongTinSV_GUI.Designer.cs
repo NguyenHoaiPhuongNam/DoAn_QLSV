@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class FrmThongTinSV_GUI
+    partial class frmThongTinSV_GUI
     {
         /// <summary>
         /// Required designer variable.

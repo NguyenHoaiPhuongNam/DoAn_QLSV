@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BUS;
+using ET;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +12,14 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmThongTinSV_GUI : Form
+    public partial class frmThongTin1SV : Form
     {
-        public frmThongTinSV_GUI()
+        public frmThongTin1SV()
         {
             InitializeComponent();
-        }
+        }   
+
+       
+      
     }
 }

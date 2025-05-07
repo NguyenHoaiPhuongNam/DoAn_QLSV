@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class DangNhap_GUI : Form
+    public partial class frmDangNhap_GUI : Form
     {
-        public DangNhap_GUI()
+        public frmDangNhap_GUI()
         {
             InitializeComponent();
         }
@@ -33,7 +33,7 @@ namespace GUI
 
 
 
-            FrmSinhVien_GUI fSV = new FrmSinhVien_GUI();
+            FrmSinhVienChinh_GUI fSV = new FrmSinhVienChinh_GUI();
             fSV.ShowDialog();
         }
     }

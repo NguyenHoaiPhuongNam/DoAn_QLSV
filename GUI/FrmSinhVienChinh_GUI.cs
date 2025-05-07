@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class FrmSinhVien_GUI : Form
+    public partial class FrmSinhVienChinh_GUI : Form
     {
-        public FrmSinhVien_GUI()
+        public FrmSinhVienChinh_GUI()
         {
             InitializeComponent();
         }
@@ -45,7 +45,7 @@ namespace GUI
         private void btnThongTinSV_Click(object sender, EventArgs e)
         {
             
-            OpenChildForm(new FrmThongTinSV_GUI());
+            OpenChildForm(new frmThongTinSV_GUI());
         }
     }
 }
