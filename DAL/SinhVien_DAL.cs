@@ -10,7 +10,6 @@ namespace DAL
     {
         QLSVDataContext db = new QLSVDataContext();
 
-
         public IQueryable LayDSSV()
         {
             var sinhVien = from sv in db.SinhViens
