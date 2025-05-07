@@ -26,7 +26,6 @@ namespace GUI
         {
             dgvTKB.DataSource = tkbBus.LayDSTKB();
 
-            // Đặt lại tên cột hiển thị
             dgvTKB.Columns["maTKB"].HeaderText = "Mã TKB";
             dgvTKB.Columns["maHocPhan"].HeaderText = "Mã Học Phần";
             dgvTKB.Columns["ngayHoc"].HeaderText = "Ngày Học";
@@ -41,7 +40,6 @@ namespace GUI
 
         private void LoadComboBoxes()
         {
-            // Load dữ liệu cho ComboBox Học phần
             cboMaHocPhan.DataSource = tkbBus.LayDSHocPhan();
             cboMaHocPhan.DisplayMember = "TenHP";
             cboMaHocPhan.ValueMember = "maHocPhan";
@@ -59,7 +57,6 @@ namespace GUI
                 return;
             }
 
-            // Kiểm tra giá trị tiết học
             if (numTBD.Value >= numTKT.Value)
             {
                 MessageBox.Show("Tiết bắt đầu phải nhỏ hơn tiết kết thúc!", "Thông báo",
@@ -67,7 +64,6 @@ namespace GUI
                 return;
             }
 
-            // Kiểm tra giá trị giờ học
             if (dtpGBD.Value >= dtpGKT.Value)
             {
                 MessageBox.Show("Giờ bắt đầu phải nhỏ hơn giờ kết thúc!", "Thông báo",

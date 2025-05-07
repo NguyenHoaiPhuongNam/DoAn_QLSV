@@ -138,7 +138,6 @@ namespace GUI
                 maHB = row.Cells["maHB"].Value.ToString();
                 txtMaHB.Text = maHB;
                 
-                // Lấy maSV và chọn trong combo box
                 string maSV = row.Cells["maSV"].Value.ToString();
                 foreach (var item in cboMaSV.Items)
                 {

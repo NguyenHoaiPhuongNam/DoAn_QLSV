@@ -24,20 +24,16 @@ namespace GUI
 
         private void LoadData()
         {
-            // Load dữ liệu cho DataGridView
             dgvĐiemHocPhan.DataSource = dhpBUS.LayDSDiemHocPhan();
 
-            // Load dữ liệu cho ComboBox SinhVien
             cboMaSV.DataSource = dhpBUS.LayDSSinhVien();
             cboMaSV.DisplayMember = "TenSinhVien";
             cboMaSV.ValueMember = "maSv";
 
-            // Load dữ liệu cho ComboBox LopHocPhan
             cboMaLopHP.DataSource = dhpBUS.LayDSLopHocPhan();
             cboMaLopHP.DisplayMember = "TenLopHP";
             cboMaLopHP.ValueMember = "maLopHP";
 
-            // Xóa trắng các TextBox
             ResetFields();
         }
 
@@ -51,21 +47,18 @@ namespace GUI
 
         private bool ValidateInputs()
         {
-            // Kiểm tra mã sinh viên
             if (cboMaSV.SelectedValue == null)
             {
                 MessageBox.Show("Vui lòng chọn sinh viên!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            // Kiểm tra mã lớp học phần
             if (cboMaLopHP.SelectedValue == null)
             {
                 MessageBox.Show("Vui lòng chọn lớp học phần!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            // Kiểm tra điểm quá trình
             if (!string.IsNullOrEmpty(txtDiemQuaTrinh.Text))
             {
                 double diemQT;
@@ -77,7 +70,6 @@ namespace GUI
                 }
             }
 
-            // Kiểm tra điểm thi
             if (!string.IsNullOrEmpty(txtDiemThi.Text))
             {
                 double diemThi;
@@ -101,7 +93,6 @@ namespace GUI
                 string maSV = row.Cells["MaSV"].Value.ToString();
                 string maLopHP = row.Cells["MaLopHP"].Value.ToString();
 
-                // Lấy thông tin điểm học phần từ BUS
                 DiemHocPhan_ET dhpET = dhpBUS.LayThongTinDiemHocPhan(maSV, maLopHP);
 
                 if (dhpET != null)
@@ -119,7 +110,6 @@ namespace GUI
             if (!ValidateInputs())
                 return;
 
-            // Tạo đối tượng DiemHocPhan_ET từ dữ liệu nhập
             DiemHocPhan_ET dhpET = new DiemHocPhan_ET();
             dhpET.MaSV = cboMaSV.SelectedValue.ToString();
             dhpET.MaLopHP = cboMaLopHP.SelectedValue.ToString();
@@ -129,7 +119,6 @@ namespace GUI
             dhpET.DiemQuaTrinh = double.TryParse(txtDiemQuaTrinh.Text, out diemQT) ? diemQT : (double?)null;
             dhpET.DiemThi = double.TryParse(txtDiemThi.Text, out diemThi) ? diemThi : (double?)null;
 
-            // Gọi BUS để thêm điểm học phần
             if (dhpBUS.ThemDiemHocPhan(dhpET))
             {
                 MessageBox.Show("Thêm điểm học phần thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -146,17 +135,14 @@ namespace GUI
             if (!ValidateInputs())
                 return;
 
-            // Tạo đối tượng DiemHocPhan_ET từ dữ liệu nhập
             DiemHocPhan_ET dhpET = new DiemHocPhan_ET();
             dhpET.MaSV = cboMaSV.SelectedValue.ToString();
             dhpET.MaLopHP = cboMaLopHP.SelectedValue.ToString();
 
-            // Xử lý trường hợp textbox trống
             double diemQT, diemThi;
             dhpET.DiemQuaTrinh = double.TryParse(txtDiemQuaTrinh.Text, out diemQT) ? diemQT : (double?)null;
             dhpET.DiemThi = double.TryParse(txtDiemThi.Text, out diemThi) ? diemThi : (double?)null;
 
-            // Gọi BUS để sửa điểm học phần
             if (dhpBUS.SuaDiemHocPhan(dhpET))
             {
                 MessageBox.Show("Sửa điểm học phần thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -26,7 +26,6 @@ namespace GUI
         {
             dgvNVQuanLy.DataSource = nvBus.LayDSNV();
 
-            // Đặt lại tên cột hiển thị
             dgvNVQuanLy.Columns["maNhanVien"].HeaderText = "Mã NV";
             dgvNVQuanLy.Columns["hoTen"].HeaderText = "Họ Tên";
             dgvNVQuanLy.Columns["ngaySinh"].HeaderText = "Ngày Sinh";
@@ -42,13 +41,11 @@ namespace GUI
 
         private void LoadComboBoxes()
         {
-            // Load dữ liệu cho ComboBox Khoa
             cboMaKhoa.DataSource = nvBus.LayDSKhoa();
             cboMaKhoa.DisplayMember = "TenKhoa";
             cboMaKhoa.ValueMember = "maKhoa";
             cboMaKhoa.SelectedIndex = -1;
 
-            // Load dữ liệu cho ComboBox Account
             cboAccountNVQL.DataSource = nvBus.LayDSAccount();
             cboAccountNVQL.DisplayMember = "TenAccount";
             cboAccountNVQL.ValueMember = "maAccount";

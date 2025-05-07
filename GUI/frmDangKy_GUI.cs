@@ -78,7 +78,6 @@ namespace GUI
 
         private void cboMaHP_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Cập nhật danh sách lớp học phần theo học phần được chọn
             if (cboMaHP.SelectedValue != null)
             {
                 string maHP = cboMaHP.SelectedValue.ToString();
@@ -97,7 +96,6 @@ namespace GUI
                 return;
             }
 
-            // Tạo đối tượng DangKy_ET
             DangKy_ET dkET = new DangKy_ET
             {
                 MaSV = cboMaSV.SelectedValue.ToString(),
@@ -106,7 +104,6 @@ namespace GUI
                 MaLopHP = cboMaLopHP.SelectedValue.ToString()
             };
 
-            // Thêm đăng ký
             if (dkBUS.ThemDangKy(dkET))
             {
                 MessageBox.Show("Thêm đăng ký thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -133,7 +130,6 @@ namespace GUI
                 return;
             }
 
-            // Tạo đối tượng DangKy_ET mới
             DangKy_ET dkETNew = new DangKy_ET
             {
                 MaSV = cboMaSV.SelectedValue.ToString(),
@@ -142,7 +138,6 @@ namespace GUI
                 MaLopHP = cboMaLopHP.SelectedValue.ToString()
             };
 
-            // Sửa đăng ký
             if (dkBUS.SuaDangKy(dkETCurrent, dkETNew))
             {
                 MessageBox.Show("Sửa đăng ký thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -189,10 +184,8 @@ namespace GUI
                 string maHK = row.Cells["maHocKy"].Value.ToString();
                 string maLopHP = row.Cells["maLopHP"].Value.ToString();
 
-                // Lưu thông tin đăng ký hiện tại
                 dkETCurrent = new DangKy_ET(maSV, maHP, maHK, maLopHP);
 
-                // Chọn các giá trị trong ComboBox
                 foreach (var item in cboMaSV.Items)
                 {
                     DataRowView drv = item as DataRowView;
@@ -223,7 +216,6 @@ namespace GUI
                     }
                 }
 
-                // Chọn lớp học phần sau khi đã cập nhật danh sách theo học phần
                 foreach (var item in cboMaLopHP.Items)
                 {
                     DataRowView drv = item as DataRowView;

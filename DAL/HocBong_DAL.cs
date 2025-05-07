@@ -30,7 +30,6 @@ namespace DAL
             return dssv;
         }
 
-        // Kiểm tra mã HB đã tồn tại chưa
         public string TaoMaHB()
         {
             string maHB;

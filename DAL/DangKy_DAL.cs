@@ -60,7 +60,6 @@ namespace DAL
             return dslhp;
         }
 
-        // Lọc danh sách lớp học phần theo mã học phần
         public IQueryable LayDSLopHP_TheoHP(string maHP)
         {
             var dslhp = from lhp in db.LopHocPhans
@@ -74,7 +73,6 @@ namespace DAL
         {
             try
             {
-                // Kiểm tra xem đã tồn tại đăng ký này chưa
                 var checkExist = db.DangKies.FirstOrDefault(x => 
                     x.maSv == dkET.MaSV && 
                     x.maHocPhan == dkET.MaHocPhan && 
@@ -105,7 +103,6 @@ namespace DAL
         {
             try
             {
-                // Xóa bản ghi cũ
                 var dkOld = db.DangKies.FirstOrDefault(x => 
                     x.maSv == dkETOld.MaSV && 
                     x.maHocPhan == dkETOld.MaHocPhan && 
@@ -118,7 +115,6 @@ namespace DAL
                 db.DangKies.DeleteOnSubmit(dkOld);
                 db.SubmitChanges();
 
-                // Thêm bản ghi mới
                 DangKy dkNew = new DangKy
                 {
                     maSv = dkETNew.MaSV,

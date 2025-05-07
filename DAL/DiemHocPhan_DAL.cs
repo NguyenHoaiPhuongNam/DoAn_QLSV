@@ -51,14 +51,12 @@ namespace DAL
         {
             try
             {
-                // Kiểm tra đã tồn tại bản ghi chưa
                 var existingRecord = db.DiemHocPhans.FirstOrDefault(d => 
                     d.maSV == dhpET.MaSV && d.maLopHP == dhpET.MaLopHP);
                 
                 if (existingRecord != null)
                     return false;
 
-                // Tạo mới và thêm vào database
                 var dhp = new DiemHocPhan
                 {
                     maSV = dhpET.MaSV,
