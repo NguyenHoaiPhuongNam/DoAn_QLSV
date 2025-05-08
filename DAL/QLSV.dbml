@@ -6,7 +6,17 @@
       <Column Name="username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="pword" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="trangthai" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Account_NhanVienQuanLy" Member="NhanVienQuanLies" ThisKey="maAccount" OtherKey="account" Type="NhanVienQuanLy" />
+      <Association Name="Account_NhanVienThuNgan" Member="NhanVienThuNgans" ThisKey="maAccount" OtherKey="account" Type="NhanVienThuNgan" />
       <Association Name="Account_SinhVien" Member="SinhViens" ThisKey="maAccount" OtherKey="account" Type="SinhVien" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChucVuDoan" Member="ChucVuDoans">
+    <Type Name="ChucVuDoan">
+      <Column Name="maChucVu" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenChucVu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="diemCong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ChucVuDoan_SinhVienChucVuDoan" Member="SinhVienChucVuDoans" ThisKey="maChucVu" OtherKey="maChucVu" Type="SinhVienChucVuDoan" />
     </Type>
   </Table>
   <Table Name="dbo.DangKy" Member="DangKies">
@@ -14,20 +24,34 @@
       <Column Name="maSv" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="maHocPhan" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="maHocKy" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maLopHP" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="HocKy_DangKy" Member="HocKy" ThisKey="maHocKy" OtherKey="maHocKy" Type="HocKy" IsForeignKey="true" />
+      <Association Name="HocPhan_DangKy" Member="HocPhan" ThisKey="maHocPhan" OtherKey="maHocPhan" Type="HocPhan" IsForeignKey="true" />
+      <Association Name="LopHocPhan_DangKy" Member="LopHocPhan" ThisKey="maLopHP" OtherKey="maLopHP" Type="LopHocPhan" IsForeignKey="true" />
+      <Association Name="SinhVien_DangKy" Member="SinhVien" ThisKey="maSv" OtherKey="maSv" Type="SinhVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DiemHocPhan" Member="DiemHocPhans">
+    <Type Name="DiemHocPhan">
+      <Column Name="maSV" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maLopHP" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="diemQuaTrinh" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="diemThi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="diemChu" Type="System.String" DbType="Char(2)" CanBeNull="true" />
       <Column Name="diemTongKet" Type="System.Double" DbType="Float" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="trangthai" Type="System.String" DbType="NVarChar(3) NOT NULL" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
-      <Association Name="HocKy_DangKy" Member="HocKy" ThisKey="maHocKy" OtherKey="maHocKy" Type="HocKy" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="HocPhan_DangKy" Member="HocPhan" ThisKey="maHocPhan" OtherKey="maHocPhan" Type="HocPhan" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="SinhVien_DangKy" Member="SinhVien" ThisKey="maSv" OtherKey="maSv" Type="SinhVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Column Name="diemTBHK" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="diemTBTichLuy" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="LopHocPhan_DiemHocPhan" Member="LopHocPhan" ThisKey="maLopHP" OtherKey="maLopHP" Type="LopHocPhan" IsForeignKey="true" />
+      <Association Name="SinhVien_DiemHocPhan" Member="SinhVien" ThisKey="maSV" OtherKey="maSv" Type="SinhVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.DiemRenLuyen" Member="DiemRenLuyens">
     <Type Name="DiemRenLuyen">
       <Column Name="maSv" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="maHocKy" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="diem" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="diemToiDa" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="diemDatDuoc" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="HocKy_DiemRenLuyen" Member="HocKy" ThisKey="maHocKy" OtherKey="maHocKy" Type="HocKy" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="SinhVien_DiemRenLuyen" Member="SinhVien" ThisKey="maSv" OtherKey="maSv" Type="SinhVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
@@ -43,8 +67,18 @@
       <Column Name="diaChi" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Column Name="maKhoa" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Association Name="GiangVien_LopHoc" Member="LopHocs" ThisKey="maGiangVien" OtherKey="maGiangVien" Type="LopHoc" />
+      <Association Name="GiangVien_LopHocPhan" Member="LopHocPhans" ThisKey="maGiangVien" OtherKey="magv" Type="LopHocPhan" />
       <Association Name="GiangVien_PhanCongGiangVien" Member="PhanCongGiangViens" ThisKey="maGiangVien" OtherKey="maGiangVien" Type="PhanCongGiangVien" />
       <Association Name="Khoa_GiangVien" Member="Khoa" ThisKey="maKhoa" OtherKey="maKhoa" Type="Khoa" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HocBong" Member="HocBongs">
+    <Type Name="HocBong">
+      <Column Name="maHB" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maSV" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="xepLoaiHB" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ghiChu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="SinhVien_HocBong" Member="SinhVien" ThisKey="maSV" OtherKey="maSv" Type="SinhVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.HocKy" Member="HocKies">
@@ -53,19 +87,28 @@
       <Column Name="tenHocKy" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="HocKy_DangKy" Member="DangKies" ThisKey="maHocKy" OtherKey="maHocKy" Type="DangKy" />
       <Association Name="HocKy_DiemRenLuyen" Member="DiemRenLuyens" ThisKey="maHocKy" OtherKey="maHocKy" Type="DiemRenLuyen" />
-      <Association Name="HocKy_SinhVienViPham" Member="SinhVienViPhams" ThisKey="maHocKy" OtherKey="maHocKy" Type="SinhVienViPham" />
+      <Association Name="HocKy_HocPhan" Member="HocPhans" ThisKey="maHocKy" OtherKey="maHocKy" Type="HocPhan" />
+      <Association Name="HocKy_KetQuaDanhGia" Member="KetQuaDanhGias" ThisKey="maHocKy" OtherKey="maHocKy" Type="KetQuaDanhGia" />
+      <Association Name="HocKy_PhiDoan" Member="PhiDoans" ThisKey="maHocKy" OtherKey="maHocKy" Type="PhiDoan" />
+      <Association Name="HocKy_SinhVienChucVuDoan" Member="SinhVienChucVuDoans" ThisKey="maHocKy" OtherKey="maHocKy" Type="SinhVienChucVuDoan" />
+      <Association Name="HocKy_SinhVienViPhamHocPhan" Member="SinhVienViPhamHocPhans" ThisKey="maHocKy" OtherKey="maHocKy" Type="SinhVienViPhamHocPhan" />
+      <Association Name="HocKy_SinhVienViPhamHocVu" Member="SinhVienViPhamHocVus" ThisKey="maHocKy" OtherKey="maHocKy" Type="SinhVienViPhamHocVu" />
     </Type>
   </Table>
   <Table Name="dbo.HocPhan" Member="HocPhans">
     <Type Name="HocPhan">
       <Column Name="maHocPhan" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="tenHocPhan" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="maHocKy" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="loaiHP" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="soTinChi" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="HocPhan_DangKy" Member="DangKies" ThisKey="maHocPhan" OtherKey="maHocPhan" Type="DangKy" />
       <Association Name="HocPhan_HocPhi" Member="HocPhis" ThisKey="maHocPhan" OtherKey="maHocPhan" Type="HocPhi" />
+      <Association Name="HocPhan_LopHocPhan" Member="LopHocPhans" ThisKey="maHocPhan" OtherKey="maHP" Type="LopHocPhan" />
       <Association Name="HocPhan_PhanCongGiangVien" Member="PhanCongGiangViens" ThisKey="maHocPhan" OtherKey="maHocPhan" Type="PhanCongGiangVien" />
-      <Association Name="HocPhan_SinhVienViPham" Member="SinhVienViPhams" ThisKey="maHocPhan" OtherKey="maHocPhan" Type="SinhVienViPham" />
+      <Association Name="HocPhan_SinhVienViPhamHocPhan" Member="SinhVienViPhamHocPhans" ThisKey="maHocPhan" OtherKey="maHocPhan" Type="SinhVienViPhamHocPhan" />
       <Association Name="HocPhan_ThoiKhoaBieu" Member="ThoiKhoaBieus" ThisKey="maHocPhan" OtherKey="maHocPhan" Type="ThoiKhoaBieu" />
+      <Association Name="HocKy_HocPhan" Member="HocKy" ThisKey="maHocKy" OtherKey="maHocKy" Type="HocKy" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.HocPhi" Member="HocPhis">
@@ -73,12 +116,26 @@
       <Column Name="maHocPhi" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="maSv" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="maHocPhan" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="maNv" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="soTinChi" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="donGia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="tongTien" Type="System.Int32" DbType="Int" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ngayDongHocPhi" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="trangThai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="HocPhan_HocPhi" Member="HocPhan" ThisKey="maHocPhan" OtherKey="maHocPhan" Type="HocPhan" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="NhanVienThuNgan_HocPhi" Member="NhanVienThuNgan" ThisKey="maNv" OtherKey="maNhanVien" Type="NhanVienThuNgan" IsForeignKey="true" />
       <Association Name="SinhVien_HocPhi" Member="SinhVien" ThisKey="maSv" OtherKey="maSv" Type="SinhVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KetQuaDanhGia" Member="KetQuaDanhGias">
+    <Type Name="KetQuaDanhGia">
+      <Column Name="maSv" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maHocKy" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maTieuChi" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="diemDatDuoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="HocKy_KetQuaDanhGia" Member="HocKy" ThisKey="maHocKy" OtherKey="maHocKy" Type="HocKy" IsForeignKey="true" />
+      <Association Name="SinhVien_KetQuaDanhGia" Member="SinhVien" ThisKey="maSv" OtherKey="maSv" Type="SinhVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="TieuChiDanhGia_KetQuaDanhGia" Member="TieuChiDanhGia" ThisKey="maTieuChi" OtherKey="maTieuChi" Type="TieuChiDanhGia" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Khoa" Member="Khoas">
@@ -87,6 +144,7 @@
       <Column Name="tenKhoa" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Association Name="Khoa_GiangVien" Member="GiangViens" ThisKey="maKhoa" OtherKey="maKhoa" Type="GiangVien" />
       <Association Name="Khoa_Nganh" Member="Nganhs" ThisKey="maKhoa" OtherKey="maKhoa" Type="Nganh" />
+      <Association Name="Khoa_NhanVienQuanLy" Member="NhanVienQuanLies" ThisKey="maKhoa" OtherKey="maKhoa" Type="NhanVienQuanLy" />
     </Type>
   </Table>
   <Table Name="dbo.LopHoc" Member="LopHocs">
@@ -101,6 +159,21 @@
       <Association Name="Nganh_LopHoc" Member="Nganh" ThisKey="maNganh" OtherKey="maNganh" Type="Nganh" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.LopHocPhan" Member="LopHocPhans">
+    <Type Name="LopHocPhan">
+      <Column Name="maLopHP" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maHP" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="soLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thongTin" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="magv" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ngayBatDau" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ngayKetThuc" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="LopHocPhan_DangKy" Member="DangKies" ThisKey="maLopHP" OtherKey="maLopHP" Type="DangKy" />
+      <Association Name="LopHocPhan_DiemHocPhan" Member="DiemHocPhans" ThisKey="maLopHP" OtherKey="maLopHP" Type="DiemHocPhan" />
+      <Association Name="GiangVien_LopHocPhan" Member="GiangVien" ThisKey="magv" OtherKey="maGiangVien" Type="GiangVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="HocPhan_LopHocPhan" Member="HocPhan" ThisKey="maHP" OtherKey="maHocPhan" Type="HocPhan" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Nganh" Member="Nganhs">
     <Type Name="Nganh">
       <Column Name="maNganh" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -112,12 +185,64 @@
       <Association Name="Khoa_Nganh" Member="Khoa" ThisKey="maKhoa" OtherKey="maKhoa" Type="Khoa" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.NhanVienQuanLy" Member="NhanVienQuanLies">
+    <Type Name="NhanVienQuanLy">
+      <Column Name="maNhanVien" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hoTen" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ngaySinh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="gioiTinh" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="sdt" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="diaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="maKhoa" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="account" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Association Name="Khoa_NhanVienQuanLy" Member="Khoa" ThisKey="maKhoa" OtherKey="maKhoa" Type="Khoa" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Account_NhanVienQuanLy" Member="Account1" ThisKey="account" OtherKey="maAccount" Type="Account" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NhanVienThuNgan" Member="NhanVienThuNgans">
+    <Type Name="NhanVienThuNgan">
+      <Column Name="maNhanVien" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hoTen" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ngaySinh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="gioiTinh" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="sdt" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="diaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="account" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Association Name="NhanVienThuNgan_HocPhi" Member="HocPhis" ThisKey="maNhanVien" OtherKey="maNv" Type="HocPhi" />
+      <Association Name="Account_NhanVienThuNgan" Member="Account1" ThisKey="account" OtherKey="maAccount" Type="Account" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
   <Table Name="dbo.PhanCongGiangVien" Member="PhanCongGiangViens">
     <Type Name="PhanCongGiangVien">
       <Column Name="maHocPhan" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="maGiangVien" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="GiangVien_PhanCongGiangVien" Member="GiangVien" ThisKey="maGiangVien" OtherKey="maGiangVien" Type="GiangVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="HocPhan_PhanCongGiangVien" Member="HocPhan" ThisKey="maHocPhan" OtherKey="maHocPhan" Type="HocPhan" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhiDoan" Member="PhiDoans">
+    <Type Name="PhiDoan">
+      <Column Name="maPhi" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="soTien" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="maHocKy" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ngayBatDau" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ngayKetThuc" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="PhiDoan_PhieuThuDoanPhi" Member="PhieuThuDoanPhis" ThisKey="maPhi" OtherKey="maPhi" Type="PhieuThuDoanPhi" />
+      <Association Name="HocKy_PhiDoan" Member="HocKy" ThisKey="maHocKy" OtherKey="maHocKy" Type="HocKy" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhieuThuDoanPhi" Member="PhieuThuDoanPhis">
+    <Type Name="PhieuThuDoanPhi">
+      <Column Name="maPhieu" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maSVThuPhi" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="maSVNopPhi" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="maPhi" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ngayThu" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="PhiDoan_PhieuThuDoanPhi" Member="PhiDoan" ThisKey="maPhi" OtherKey="maPhi" Type="PhiDoan" IsForeignKey="true" />
+      <Association Name="SinhVien_PhieuThuDoanPhi" Member="SinhVien" ThisKey="maSVNopPhi" OtherKey="maSv" Type="SinhVien" IsForeignKey="true" />
+      <Association Name="SinhVien_PhieuThuDoanPhi1" Member="SinhVien1" ThisKey="maSVThuPhi" OtherKey="maSv" Type="SinhVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.SinhVien" Member="SinhViens">
@@ -132,15 +257,42 @@
       <Column Name="lophoc" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="account" Type="System.String" DbType="Char(10)" CanBeNull="true" />
       <Association Name="SinhVien_DangKy" Member="DangKies" ThisKey="maSv" OtherKey="maSv" Type="DangKy" />
+      <Association Name="SinhVien_DiemHocPhan" Member="DiemHocPhans" ThisKey="maSv" OtherKey="maSV" Type="DiemHocPhan" />
       <Association Name="SinhVien_DiemRenLuyen" Member="DiemRenLuyens" ThisKey="maSv" OtherKey="maSv" Type="DiemRenLuyen" />
+      <Association Name="SinhVien_HocBong" Member="HocBongs" ThisKey="maSv" OtherKey="maSV" Type="HocBong" />
       <Association Name="SinhVien_HocPhi" Member="HocPhis" ThisKey="maSv" OtherKey="maSv" Type="HocPhi" />
-      <Association Name="SinhVien_SinhVienViPham" Member="SinhVienViPhams" ThisKey="maSv" OtherKey="maSv" Type="SinhVienViPham" />
+      <Association Name="SinhVien_KetQuaDanhGia" Member="KetQuaDanhGias" ThisKey="maSv" OtherKey="maSv" Type="KetQuaDanhGia" />
+      <Association Name="SinhVien_PhieuThuDoanPhi" Member="PhieuThuDoanPhis" ThisKey="maSv" OtherKey="maSVNopPhi" Type="PhieuThuDoanPhi" />
+      <Association Name="SinhVien_PhieuThuDoanPhi1" Member="PhieuThuDoanPhis1" ThisKey="maSv" OtherKey="maSVThuPhi" Type="PhieuThuDoanPhi" />
+      <Association Name="SinhVien_SinhVienChucVuDoan" Member="SinhVienChucVuDoans" ThisKey="maSv" OtherKey="maSV" Type="SinhVienChucVuDoan" />
+      <Association Name="SinhVien_SinhVienThamGiaSuKien" Member="SinhVienThamGiaSuKiens" ThisKey="maSv" OtherKey="maSV" Type="SinhVienThamGiaSuKien" />
+      <Association Name="SinhVien_SinhVienViPhamHocPhan" Member="SinhVienViPhamHocPhans" ThisKey="maSv" OtherKey="maSv" Type="SinhVienViPhamHocPhan" />
+      <Association Name="SinhVien_SinhVienViPhamHocVu" Member="SinhVienViPhamHocVus" ThisKey="maSv" OtherKey="maSv" Type="SinhVienViPhamHocVu" />
+      <Association Name="SinhVien_TotNghiep" Member="TotNghiep" ThisKey="maSv" OtherKey="maSV" Type="TotNghiep" Cardinality="One" />
       <Association Name="Account_SinhVien" Member="Account1" ThisKey="account" OtherKey="maAccount" Type="Account" IsForeignKey="true" DeleteRule="SET NULL" />
       <Association Name="LopHoc_SinhVien" Member="LopHoc1" ThisKey="lophoc" OtherKey="maLop" Type="LopHoc" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.SinhVienViPham" Member="SinhVienViPhams">
-    <Type Name="SinhVienViPham">
+  <Table Name="dbo.SinhVienChucVuDoan" Member="SinhVienChucVuDoans">
+    <Type Name="SinhVienChucVuDoan">
+      <Column Name="maSV" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maChucVu" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maHocKy" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="ChucVuDoan_SinhVienChucVuDoan" Member="ChucVuDoan" ThisKey="maChucVu" OtherKey="maChucVu" Type="ChucVuDoan" IsForeignKey="true" />
+      <Association Name="HocKy_SinhVienChucVuDoan" Member="HocKy" ThisKey="maHocKy" OtherKey="maHocKy" Type="HocKy" IsForeignKey="true" />
+      <Association Name="SinhVien_SinhVienChucVuDoan" Member="SinhVien" ThisKey="maSV" OtherKey="maSv" Type="SinhVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SinhVienThamGiaSuKien" Member="SinhVienThamGiaSuKiens">
+    <Type Name="SinhVienThamGiaSuKien">
+      <Column Name="maSV" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maSK" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="SinhVien_SinhVienThamGiaSuKien" Member="SinhVien" ThisKey="maSV" OtherKey="maSv" Type="SinhVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="SuKien_SinhVienThamGiaSuKien" Member="SuKien" ThisKey="maSK" OtherKey="maSK" Type="SuKien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SinhVienViPhamHocPhan" Member="SinhVienViPhamHocPhans">
+    <Type Name="SinhVienViPhamHocPhan">
       <Column Name="maViPham" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="maSv" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="maHocKy" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
@@ -149,9 +301,34 @@
       <Column Name="loaiViPham" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="moTa" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="hinhThucXuLy" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="HocKy_SinhVienViPham" Member="HocKy" ThisKey="maHocKy" OtherKey="maHocKy" Type="HocKy" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="HocPhan_SinhVienViPham" Member="HocPhan" ThisKey="maHocPhan" OtherKey="maHocPhan" Type="HocPhan" IsForeignKey="true" DeleteRule="CASCADE" />
-      <Association Name="SinhVien_SinhVienViPham" Member="SinhVien" ThisKey="maSv" OtherKey="maSv" Type="SinhVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Column Name="diemTru" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="HocKy_SinhVienViPhamHocPhan" Member="HocKy" ThisKey="maHocKy" OtherKey="maHocKy" Type="HocKy" IsForeignKey="true" />
+      <Association Name="HocPhan_SinhVienViPhamHocPhan" Member="HocPhan" ThisKey="maHocPhan" OtherKey="maHocPhan" Type="HocPhan" IsForeignKey="true" />
+      <Association Name="SinhVien_SinhVienViPhamHocPhan" Member="SinhVien" ThisKey="maSv" OtherKey="maSv" Type="SinhVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SinhVienViPhamHocVu" Member="SinhVienViPhamHocVus">
+    <Type Name="SinhVienViPhamHocVu">
+      <Column Name="maViPham" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maSv" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="maHocKy" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ngayViPham" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="loaiViPham" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="moTa" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="hinhThucXuLy" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="diemTru" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="HocKy_SinhVienViPhamHocVu" Member="HocKy" ThisKey="maHocKy" OtherKey="maHocKy" Type="HocKy" IsForeignKey="true" />
+      <Association Name="SinhVien_SinhVienViPhamHocVu" Member="SinhVien" ThisKey="maSv" OtherKey="maSv" Type="SinhVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SuKien" Member="SuKiens">
+    <Type Name="SuKien">
+      <Column Name="maSK" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenSK" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="diemcong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thoiGianBatDau" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="thoiGianKetThuc" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="SuKien_SinhVienThamGiaSuKien" Member="SinhVienThamGiaSuKiens" ThisKey="maSK" OtherKey="maSK" Type="SinhVienThamGiaSuKien" />
     </Type>
   </Table>
   <Table Name="dbo.ThoiKhoaBieu" Member="ThoiKhoaBieus">
@@ -163,7 +340,26 @@
       <Column Name="gioKetThuc" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
       <Column Name="tietBatDau" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="tietKetThuc" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="phong" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Association Name="HocPhan_ThoiKhoaBieu" Member="HocPhan" ThisKey="maHocPhan" OtherKey="maHocPhan" Type="HocPhan" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TieuChiDanhGia" Member="TieuChiDanhGias">
+    <Type Name="TieuChiDanhGia">
+      <Column Name="maTieuChi" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenTieuChi" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="diemToiDa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TieuChiDanhGia_KetQuaDanhGia" Member="KetQuaDanhGias" ThisKey="maTieuChi" OtherKey="maTieuChi" Type="KetQuaDanhGia" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TotNghiep" Member="TotNghieps">
+    <Type Name="TotNghiep">
+      <Column Name="maSV" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ngayTotNghiep" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="xepLoai" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="tongSoTinChiDatDuoc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tongSoTinChiYeuCau" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="SinhVien_TotNghiep" Member="SinhVien" ThisKey="maSV" OtherKey="maSv" Type="SinhVien" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>
