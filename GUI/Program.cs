@@ -8,15 +8,39 @@ namespace GUI
 {
     internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmSinhVienVPHocVu_GUI());
+
+            //frmDangNhap_GUI frmLogin = new frmDangNhap_GUI();
+            //if (frmLogin.ShowDialog() == DialogResult.OK)
+            //{
+            //    string loaiTK = frmLogin.LoaiTaiKhoan;
+            //    string maAccount = frmLogin.MaAccountDangNhap;
+
+            //    switch (loaiTK)
+            //    {
+            //        case "Sinh viên":
+            //            Application.Run(new FrmSinhVienChinh_GUI(maAccount));
+            //            break;
+
+            //        case "Nhân viên quản lý":
+            //            Application.Run(new FormNhanVienQL(maAccount));
+            //            break;
+
+            //        case "Admin":
+            //            Application.Run(new FormAdmin(maAccount)); ----Đăng nhập phân quyền
+            //             break;
+
+            //        default:
+            //            MessageBox.Show("Loại tài khoản không xác định.");
+            //            break;
+            //    }
+            //}
+             Application.Run(new FrmEditSuKien()); // ---Đăng nhập 1 form bất kỳ
+
         }
     }
 }
