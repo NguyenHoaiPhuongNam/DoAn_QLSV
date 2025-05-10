@@ -42,10 +42,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChucVuDoan_DAL.cs" />
     <Compile Include="DangKy_DAL.cs" />
+    <Compile Include="DangNhap_DAL.cs" />
     <Compile Include="DiemHocPhan_DAL.cs" />
+    <Compile Include="DiemRenLuyen_DAL.cs" />
+    <Compile Include="GiangVien_DAL.cs" />
     <Compile Include="HocBong_DAL.cs" />
+    <Compile Include="HocKy_DAL.cs" />
+    <Compile Include="HocPhan_DAL.cs" />
+    <Compile Include="HocPhi_DAL.cs" />
+    <Compile Include="KetQuaDanhGia_DAL.cs" />
+    <Compile Include="Khoa_DAL.cs" />
+    <Compile Include="LopHocPhan_DAL.cs" />
+    <Compile Include="LopHoc_DAL.cs" />
+    <Compile Include="Nganh_DAL.cs" />
     <Compile Include="NhanVienQuanLy_DAL.cs" />
+    <Compile Include="NhanVienThuNgan_DAL.cs" />
+    <Compile Include="PhanCongGiangVien_DAL.cs" />
+    <Compile Include="PhiDoan_DAL.cs" />
+    <Compile Include="PhieuThuDoanPhi_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -57,10 +73,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QLSV.dbml</DependentUpon>
     </Compile>
+    <Compile Include="SinhVienChucVuDoan_DAL.cs" />
     <Compile Include="SinhVienn_DAL.cs" />
+    <Compile Include="SinhVienThamGiaSuKien_DAL.cs" />
     <Compile Include="SinhVienVPHocVu_DAL.cs" />
     <Compile Include="SinhVien_DAL.cs" />
+    <Compile Include="SuKien_DAL.cs" />
     <Compile Include="ThoiKhoaBieu_DAL.cs" />
+    <Compile Include="ThongTinSV_DAL.cs" />
+    <Compile Include="TieuChiDanhGia_DAL.cs" />
     <Compile Include="TotNghiep_DAL.cs" />
   </ItemGroup>
   <ItemGroup>

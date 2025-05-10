@@ -12,9 +12,12 @@ namespace GUI
 {
     public partial class FrmSinhVienChinh_GUI : Form
     {
-        public FrmSinhVienChinh_GUI()
+        private string maAccount;
+
+        public FrmSinhVienChinh_GUI(string maAccount)
         {
             InitializeComponent();
+            this.maAccount = maAccount;
         }
 
 
@@ -44,8 +47,15 @@ namespace GUI
 
         private void btnThongTinSV_Click(object sender, EventArgs e)
         {
-            
-            OpenChildForm(new frmThongTinSV_GUI());
+
+            OpenChildForm(new FrmThongTinSV_GUI(maAccount));
+        }
+
+        private void FrmSinhVien_GUI_Load(object sender, EventArgs e)
+        {
+            DangNhap_GUI dangNhap_GUI = new DangNhap_GUI();
+            // string ma = dangNhap_GUI.LayTxtMa();
+            // txtMaSV.Text = ma;
         }
     }
 }

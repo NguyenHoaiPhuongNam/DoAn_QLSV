@@ -41,16 +41,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChucVuDoan_ET.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="DangKy_ET.cs" />
     <Compile Include="DiemHocPhan_ET.cs" />
+    <Compile Include="DiemRenLuyen_ET.cs" />
+    <Compile Include="GiangVien_ET.cs" />
     <Compile Include="HocBong_ET.cs" />
+    <Compile Include="HocKy_ET.cs" />
+    <Compile Include="HocPhan_ET.cs" />
+    <Compile Include="HocPhi_ET.cs" />
+    <Compile Include="KetQuaDanhGia_ET.cs" />
+    <Compile Include="Khoa_ET.cs" />
+    <Compile Include="LopHocPhan_ET.cs" />
+    <Compile Include="LopHoc_ET.cs" />
+    <Compile Include="Nganh_ET.cs" />
     <Compile Include="NhanVienQuanLy_ET.cs" />
+    <Compile Include="NhanVienThuNgan_ET.cs" />
+    <Compile Include="PhanCongGiangVien_ET.cs" />
+    <Compile Include="PhiDoan_ET.cs" />
+    <Compile Include="PhieuThuDoanPhi_ET.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SinhVienChucVuDoan_ET.cs" />
     <Compile Include="SinhVienn_ET.cs" />
+    <Compile Include="SinhVienThamGiaSuKien_ET.cs" />
     <Compile Include="SinhVienVPHocVu_ET.cs" />
     <Compile Include="SinhVien_ET.cs" />
+    <Compile Include="SuKien_ET.cs" />
     <Compile Include="ThoiKhoaBieu_ET.cs" />
+    <Compile Include="TieuChiDanhGia_ET.cs" />
     <Compile Include="TotNghiep_ET.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -41,16 +41,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChucVuDoan_BUS.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="DangKy_BUS.cs" />
+    <Compile Include="DangNhap_BUS.cs" />
     <Compile Include="DiemHocPhan_BUS.cs" />
+    <Compile Include="DiemRenLuyen_BUS.cs" />
+    <Compile Include="GiangVien_BUS.cs" />
     <Compile Include="HocBong_BUS.cs" />
+    <Compile Include="HocKy_BUS.cs" />
+    <Compile Include="HocPhan_BUS.cs" />
+    <Compile Include="HocPhi_BUS.cs" />
+    <Compile Include="KetQuaDanhGia_BUS.cs" />
+    <Compile Include="Khoa_BUS.cs" />
+    <Compile Include="LopHocPhan_BUS.cs" />
+    <Compile Include="LopHoc_BUS.cs" />
+    <Compile Include="Nganh_BUS.cs" />
     <Compile Include="NhanVienQuanLy_BUS.cs" />
+    <Compile Include="NhanVienThuNgan_BUS.cs" />
+    <Compile Include="PhanCongGiangVien_BUS.cs" />
+    <Compile Include="PhiDoan_BUS.cs" />
+    <Compile Include="PhieuThuDoanPhi_BUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SinhVienChucVuDoan_BUS.cs" />
     <Compile Include="SinhVienn_BUS.cs" />
+    <Compile Include="SinhVienThamGiaSuKien_BUS.cs" />
     <Compile Include="SinhVienVPHocVu_BUS.cs" />
     <Compile Include="SinhVien_BUS.cs" />
+    <Compile Include="SuKien_BUS.cs" />
     <Compile Include="ThoiKhoaBieu_BUS.cs" />
+    <Compile Include="ThongTinSV_BUS.cs" />
+    <Compile Include="TieuChiDanhGia_BUS.cs" />
     <Compile Include="TotNghiep_BUS.cs" />
   </ItemGroup>
   <ItemGroup>
